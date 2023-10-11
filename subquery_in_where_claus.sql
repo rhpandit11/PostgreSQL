@@ -1,6 +1,5 @@
-
-
-
+-- Return all the customers first and last names that are 
+-- from California and have spent more than 100 in total
 
 SELECT
 first_name,

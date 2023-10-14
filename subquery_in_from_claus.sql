@@ -13,4 +13,4 @@ FROM
 SUM(amount) AS amount_per_day,
 DATE(payment_date)
 FROM payment
-GROUP BY DATE(payment_date))
+GROUP BY DATE(payment_date)) AS subquery

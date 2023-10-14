@@ -18,7 +18,7 @@ staff_id, amount,
 (SELECT SUM(amount) as sum_amount 
  FROM payment p2
  WHERE p1.customer_id=p2.customer_id),
- (SELECT COUNT(amount) as count_payments
+(SELECT COUNT(amount) as count_payments
  FROM payment p2
  WHERE p1.customer_id=p2.customer_id)
 FROM payment p1

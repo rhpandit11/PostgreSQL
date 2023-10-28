@@ -34,3 +34,30 @@ RENAME director_account_name TO account_name
 
 ALTER TABLE director
 RENAME TO directors
+
+-- TRUNCATE (WORK only for tables)
+
+-- Create table
+CREATE TABLE emp_table 
+(
+	emp_id SERIAL PRIMARY KEY,
+	emp_name TEXT
+)
+
+-- SELECT table
+SELECT * FROM emp_table
+
+-- Drop table
+DROP TABLE emp_table
+
+-- Insert rows
+INSERT INTO emp_table
+VALUES
+(1,'Frank'),
+(2,'Maria')
+
+-- SELECT table
+SELECT * FROM emp_table
+
+-- Truncate table
+TRUNCATE TABLE emp_table

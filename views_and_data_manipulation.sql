@@ -22,3 +22,12 @@ ADD COLUMN initials VARCHAR(4)
 
 UPDATE customer
 SET initials=LEFT(first_name,1)||'.'||LEFT(last_name,1)||'.'
+
+
+--Delete Command
+DELETE FROM songs
+WHERE song_id IN (4,5)
+RETURNING song_name, song_id
+
+DELETE FROM payment
+WHERE payment_id IN (17064,17067)

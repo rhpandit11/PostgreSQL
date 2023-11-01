@@ -32,3 +32,14 @@ RETURNING song_name, song_id
 DELETE FROM payment
 WHERE payment_id IN (17064,17067)
 RETURNING *
+
+--Create Table as command
+
+CREATE TABLE customer_address
+As
+SELECT first_name, last_name, email, address, city
+FROM customer c
+LEFT JOIN address a
+ON c.address_id=a.address_id
+LEFT JOIN city ci
+ON ci.city_id=a.city_id

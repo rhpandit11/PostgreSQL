@@ -54,3 +54,43 @@ FROM customer c
 LEFT JOIN payment p
 ON c.customer_id=p.customer_id
 GROUP BY first_name ||' '|| last_name
+
+/*
+Create a view called films_category that shows a list of the film titles including their title, 
+length and category name ordered descendingly by the length.
+
+Filter the results to only the movies in the category 'Action' and 'Comedy'.
+*/
+
+CREATE VIEW films_category
+AS
+SELECT 
+title,
+name,
+length
+FROM film f
+LEFT JOIN film_category fc
+ON f.film_id=fc.film_id
+LEFT JOIN category c
+ON c.category_id=fc.category_id
+WHERE name IN ('Action','Comedy')
+ORDER BY length DESC
+
+--Create a Materialized view
+
+CREATE MATERIALIZED VIEW mv_film_category
+AS
+SELECT 
+title,
+name,
+length
+FROM film f 
+LEFT JOIN film_category fc 
+ON f.film_id=fc.film_id
+LEFT JOIN category c
+ON c.category_id=fc.category_id
+WHERE name IN ('Action','comedy')
+ORDER BY length DESC 
+
+--Refresh a materialized view
+REFRESH MATERIALIZED VIEW  mv_film_category

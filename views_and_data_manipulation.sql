@@ -139,15 +139,15 @@ RENAME COLUMN customer_id TO c_id
 CREATE OR REPLACE VIEW v_customer_information
 AS
 SELECT cu.customer_id,
-    cu.first_name || ' ' || cu.last_name AS name,
-    cu.initials,
-	a.address,
-    a.postal_code,
-    a.phone,
-    city.city,
-    country.country
-     FROM customer cu
-     JOIN address a ON cu.address_id = a.address_id
-     JOIN city ON a.city_id = city.city_id
-     JOIN country ON city.country_id = country.country_id
+cu.first_name || ' ' || cu.last_name AS name,
+cu.initials,
+a.address,
+a.postal_code,
+a.phone,
+city.city,
+country.country
+FROM customer cu
+LEFT JOIN address a ON cu.address_id = a.address_id
+LEFT JOIN city ON a.city_id = city.city_id
+LEFT JOIN country ON city.country_id = country.country_id
 ORDER BY customer_id

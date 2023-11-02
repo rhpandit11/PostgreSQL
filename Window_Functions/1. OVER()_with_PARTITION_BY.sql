@@ -40,3 +40,26 @@ SELECT
 COUNT(*) OVER(PARTITION BY amount,customer_id)
 FROM payment
 ORDER BY customer_id
+
+/*
+Write a query that returns the running total of how late the flights are
+(difference between actual_arrival and scheduled arrival) ordered by flight_id
+including the departure airport.
+As a second query, calculate the same running total but partition also by the
+departure airport.
+*/
+SELECT
+flight_id,
+departure_airport,
+actual_arrival - scheduled_arrival AS late_duration,
+SUM(actual_arrival - scheduled_arrival) OVER (ORDER BY flight_id) AS running_total
+FROM flights
+ORDER BY flight_id;
+---------------------------------------------------------------------------------------
+SELECT
+flight_id,
+departure_airport,
+actual_arrival - scheduled_arrival AS late_duration,
+SUM(actual_arrival - scheduled_arrival) OVER (PARTITION BY departure_airport ORDER BY flight_id) AS running_total
+FROM flights
+ORDER BY flight_id;

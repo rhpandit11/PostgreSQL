@@ -43,3 +43,14 @@ LEFT JOIN address a
 ON c.address_id=a.address_id
 LEFT JOIN city ci
 ON ci.city_id=a.city_id
+
+--Challenge
+CREATE TABLE customer_spendings
+AS
+SELECT 
+first_name ||' '|| last_name AS name,
+SUM(amount) AS total_amount
+FROM customer c
+LEFT JOIN payment p
+ON c.customer_id=p.customer_id
+GROUP BY first_name ||' '|| last_name
